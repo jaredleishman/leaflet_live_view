@@ -1,0 +1,20 @@
+<section class="phx-hero">
+  <h1><%= gettext "Welcome to %{name}!", name: "Leaflet LiveView" %></h1>
+
+  <leaflet-map lat="51.505" lng="-0.09">
+    <%= for marker <- @markers do %>
+      <leaflet-marker
+        lat="<%= marker.lat %>"
+        lng="<%= marker.lng %>"
+        selected="<%= marker.selected %>"
+        phx-click="toggle_marker"
+        phx-value-id="<%= marker.id %>">
+        <leaflet-icon
+          icon-url="<%= get_icon_url(marker.selected) %>"
+          width="64"
+          height="64">
+        </leaflet-icon>
+      </leaflet-marker>
+    <% end %>
+  </leaflet-map>
+</section>
